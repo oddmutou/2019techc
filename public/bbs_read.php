@@ -21,9 +21,10 @@ $rows = $select_sth->fetchAll();
 <hr>
 
 
-<form method="POST" action="./bbs_write.php">
+<form method="POST" action="./bbs_write.php" enctype="multipart/form-data">
     <div>
         名前: <input type="text" name="name">
+        <input type="file" name="upload_image">
     </div>  
     <div>
         <textarea name="body" rows="5" cols="100" required></textarea>
