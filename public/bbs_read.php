@@ -22,9 +22,7 @@ $rows = $select_sth->fetchAll();
 </div>  
 <?php endforeach; ?>
 
-
 <hr>
-
 
 <form method="POST" action="./bbs_write.php" enctype="multipart/form-data">
     <div>
