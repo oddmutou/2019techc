@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 // 接続 ref. https://www.php.net/manual/ja/pdo.connections.php
 $dbh = new PDO('mysql:host=database-1.csnl2wojipk7.us-east-1.rds.amazonaws.com;dbname=bbs_db', 'admin', 'password');
 
@@ -24,13 +26,17 @@ $rows = $select_sth->fetchAll();
 
 <hr>
 
+<?php if(empty($_SESSION['user_login_name'])): ?>
+ログインしないと投稿できません。ログインは<a href="./login_form.php">こちら</a>。
+<?php else: ?>
 <form method="POST" action="./bbs_write.php" enctype="multipart/form-data">
     <div>
-        名前: <input type="text" name="name">
+        名前: <?php echo($_SESSION['user_login_name']) ?>
         <input type="file" name="upload_image">
     </div>  
     <div>
         <textarea name="body" rows="5" cols="100" required></textarea>
     </div>  
     <input type="submit">
-</form> 
+</form>
+<?php endif; ?>

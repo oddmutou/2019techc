@@ -1,6 +1,7 @@
 <?php
-// 必須である投稿本文がない場合は何もせずに閲覧画面に飛ばす
-if( empty($_POST['body']) ) { 
+session_start();
+// 必須である投稿本文がない場合または非ログイン常態の場合は何もせずに閲覧画面に飛ばす
+if( empty($_POST['body']) || empty($_SESSION['user_login_name'])) { 
   header("HTTP/1.1 302 Found");
   header("Location: ./bbs_read.php");
   return;
@@ -31,7 +32,7 @@ $dbh = new PDO('mysql:host=database-1.csnl2wojipk7.us-east-1.rds.amazonaws.com;d
 // INSERTする
 $insert_sth = $dbh->prepare("INSERT INTO bbs (name, body, filename) VALUES (:name, :body, :filename)");
 $insert_sth->execute(array(
-    ':name' => $_POST['name'],
+    ':name' => $_SESSION['user_login_name'],
     ':body' => $_POST['body'],
     ':filename' => $filename,
 ));
