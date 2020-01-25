@@ -27,7 +27,7 @@ if ($_FILES['upload_image']['size'] > 0) {
 }
 
 // 接続 ref. https://www.php.net/manual/ja/pdo.connections.php
-$dbh = new PDO('mysql:host=database-1.csnl2wojipk7.us-east-1.rds.amazonaws.com;dbname=bbs_db', 'admin', 'password');
+$dbh = new PDO('mysql:host=db;dbname=bbs_db', 'app_username', 'app_password');
 
 // INSERTする
 $insert_sth = $dbh->prepare("INSERT INTO bbs (name, body, filename) VALUES (:name, :body, :filename)");

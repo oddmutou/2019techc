@@ -10,7 +10,7 @@ if( empty($_POST['login_name']) || empty($_POST['password'])
 }
 
 // 接続 ref. https://www.php.net/manual/ja/pdo.connections.php
-$dbh = new PDO('mysql:host=database-1.csnl2wojipk7.us-east-1.rds.amazonaws.com;dbname=bbs_db', 'admin', 'password');
+$dbh = new PDO('mysql:host=db;dbname=bbs_db', 'app_username', 'app_password');
 
 $select_sth = $dbh->prepare('SELECT id, login_name, password, created_at FROM users WHERE login_name = :login_name');
 $select_sth->execute(['login_name' => $_POST['login_name']]);
